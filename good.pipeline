@@ -1,0 +1,596 @@
+{
+  "doc_type": "pipeline",
+  "version": "3.0",
+  "json_schema": "http://api.dataplatform.ibm.com/schemas/common-pipeline/pipeline-flow/pipeline-flow-v3-schema.json",
+  "id": "0e39c09e-e477-47f6-b4a2-68244c46ef1e",
+  "primary_pipeline": "bc5123a3-4e26-4db1-b17e-77f150b26ffc",
+  "pipelines": [
+    {
+      "id": "bc5123a3-4e26-4db1-b17e-77f150b26ffc",
+      "nodes": [
+        {
+          "id": "58f6dde7-bd2b-42f4-b681-e2176b47e0cd",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "filename": "../notebooks/etl_us_data.ipynb",
+            "runtime_image": "continuumio/anaconda3:2020.07",
+            "dependencies": [
+              "util.py"
+            ],
+            "include_subdirectories": false,
+            "env_vars": [],
+            "outputs": [
+              "outputs/us_counties.csv",
+              "outputs/us_counties_meta.json"
+            ],
+            "invalidNodeError": null,
+            "ui_data": {
+              "label": "etl_us_data.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20opacity%3D%220.8%22%20version%3D%222.0%22%20viewBox%3D%220%200%20300%20300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Afigma%3D%22http%3A%2F%2Fwww.figma.com%2Ffigma%2Fns%22%3E%3Ctitle%3Elogo.svg%3C%2Ftitle%3E%3Cdesc%3ECreated%20using%20Figma%200.90%3C%2Fdesc%3E%3Cg%20id%3D%22Canvas%22%20transform%3D%22translate(-1638%2C-1844)%22%20figma%3Atype%3D%22canvas%22%3E%3Cg%20id%3D%22logo%22%20style%3D%22mix-blend-mode%3Anormal%22%20figma%3Atype%3D%22group%22%3E%3Cpath%20d%3D%22m1788%201886a108.02%20108.02%200%200%200%20-104.92%2082.828%20114.07%2064.249%200%200%201%20104.92%20-39.053%20114.07%2064.249%200%200%201%20104.96%2039.261%20108.02%20108.02%200%200%200%20-104.96%20-83.037zm-104.96%20133.01a108.02%20108.02%200%200%200%20104.96%2083.037%20108.02%20108.02%200%200%200%20104.92%20-82.828%20114.07%2064.249%200%200%201%20-104.92%2039.053%20114.07%2064.249%200%200%201%20-104.96%20-39.261z%22%20style%3D%22fill%3A%23f57c00%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221699.5%22%20cy%3D%222110.8%22%20r%3D%2222.627%22%20style%3D%22fill%3A%239e9e9e%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221684.3%22%20cy%3D%221892.6%22%20r%3D%2216.617%22%20style%3D%22fill%3A%23616161%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221879.8%22%20cy%3D%221877.4%22%20r%3D%2221.213%22%20style%3D%22fill%3A%23757575%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0D%0A",
+              "x_pos": 48,
+              "y_pos": 300,
+              "description": "Notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": 1
+                  },
+                  "label": "Input Port"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "130d1e75-9585-480b-8c98-c86aaf051159",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "filename": "../notebooks/clean_us_data.ipynb",
+            "runtime_image": "continuumio/anaconda3:2020.07",
+            "dependencies": [
+              "util.py",
+              "inputs/co-est2019-alldata.csv"
+            ],
+            "include_subdirectories": false,
+            "env_vars": [],
+            "outputs": [
+              "outputs/us_counties_clean.csv",
+              "outputs/us_counties_clean_meta.json",
+              "outputs/us_counties_clean.feather",
+              "outputs/dates.feather"
+            ],
+            "invalidNodeError": null,
+            "ui_data": {
+              "label": "clean_us_data.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20opacity%3D%220.8%22%20version%3D%222.0%22%20viewBox%3D%220%200%20300%20300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Afigma%3D%22http%3A%2F%2Fwww.figma.com%2Ffigma%2Fns%22%3E%3Ctitle%3Elogo.svg%3C%2Ftitle%3E%3Cdesc%3ECreated%20using%20Figma%200.90%3C%2Fdesc%3E%3Cg%20id%3D%22Canvas%22%20transform%3D%22translate(-1638%2C-1844)%22%20figma%3Atype%3D%22canvas%22%3E%3Cg%20id%3D%22logo%22%20style%3D%22mix-blend-mode%3Anormal%22%20figma%3Atype%3D%22group%22%3E%3Cpath%20d%3D%22m1788%201886a108.02%20108.02%200%200%200%20-104.92%2082.828%20114.07%2064.249%200%200%201%20104.92%20-39.053%20114.07%2064.249%200%200%201%20104.96%2039.261%20108.02%20108.02%200%200%200%20-104.96%20-83.037zm-104.96%20133.01a108.02%20108.02%200%200%200%20104.96%2083.037%20108.02%20108.02%200%200%200%20104.92%20-82.828%20114.07%2064.249%200%200%201%20-104.92%2039.053%20114.07%2064.249%200%200%201%20-104.96%20-39.261z%22%20style%3D%22fill%3A%23f57c00%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221699.5%22%20cy%3D%222110.8%22%20r%3D%2222.627%22%20style%3D%22fill%3A%239e9e9e%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221684.3%22%20cy%3D%221892.6%22%20r%3D%2216.617%22%20style%3D%22fill%3A%23616161%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221879.8%22%20cy%3D%221877.4%22%20r%3D%2221.213%22%20style%3D%22fill%3A%23757575%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0D%0A",
+              "x_pos": 290,
+              "y_pos": 300,
+              "description": "Notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": 1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "92395b96-c429-423e-a2d0-1c7bc8b6dfd1",
+                  "node_id_ref": "58f6dde7-bd2b-42f4-b681-e2176b47e0cd",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "cfc8ddfe-9d68-4315-88c3-cfb8f41bc76a",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "filename": "../notebooks/etl_us_census.ipynb",
+            "runtime_image": "continuumio/anaconda3:2020.07",
+            "dependencies": [
+              "inputs/ACS*",
+              "util.py"
+            ],
+            "include_subdirectories": false,
+            "env_vars": [],
+            "outputs": [
+              "outputs/us_counties_income.csv"
+            ],
+            "invalidNodeError": null,
+            "ui_data": {
+              "label": "etl_us_census.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20opacity%3D%220.8%22%20version%3D%222.0%22%20viewBox%3D%220%200%20300%20300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Afigma%3D%22http%3A%2F%2Fwww.figma.com%2Ffigma%2Fns%22%3E%3Ctitle%3Elogo.svg%3C%2Ftitle%3E%3Cdesc%3ECreated%20using%20Figma%200.90%3C%2Fdesc%3E%3Cg%20id%3D%22Canvas%22%20transform%3D%22translate(-1638%2C-1844)%22%20figma%3Atype%3D%22canvas%22%3E%3Cg%20id%3D%22logo%22%20style%3D%22mix-blend-mode%3Anormal%22%20figma%3Atype%3D%22group%22%3E%3Cpath%20d%3D%22m1788%201886a108.02%20108.02%200%200%200%20-104.92%2082.828%20114.07%2064.249%200%200%201%20104.92%20-39.053%20114.07%2064.249%200%200%201%20104.96%2039.261%20108.02%20108.02%200%200%200%20-104.96%20-83.037zm-104.96%20133.01a108.02%20108.02%200%200%200%20104.96%2083.037%20108.02%20108.02%200%200%200%20104.92%20-82.828%20114.07%2064.249%200%200%201%20-104.92%2039.053%20114.07%2064.249%200%200%201%20-104.96%20-39.261z%22%20style%3D%22fill%3A%23f57c00%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221699.5%22%20cy%3D%222110.8%22%20r%3D%2222.627%22%20style%3D%22fill%3A%239e9e9e%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221684.3%22%20cy%3D%221892.6%22%20r%3D%2216.617%22%20style%3D%22fill%3A%23616161%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221879.8%22%20cy%3D%221877.4%22%20r%3D%2221.213%22%20style%3D%22fill%3A%23757575%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0D%0A",
+              "x_pos": 51,
+              "y_pos": 59,
+              "description": "Notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": 1
+                  },
+                  "label": "Input Port"
+                }
+              }
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "df2e46c1-c7ea-4cb6-a17c-1f6b8ceded13",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "filename": "../notebooks/demographics_us_data.ipynb",
+            "runtime_image": "continuumio/anaconda3:2020.07",
+            "dependencies": [
+              "util.py"
+            ],
+            "include_subdirectories": false,
+            "env_vars": [],
+            "outputs": [],
+            "invalidNodeError": null,
+            "ui_data": {
+              "label": "demographics_us_data.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20opacity%3D%220.8%22%20version%3D%222.0%22%20viewBox%3D%220%200%20300%20300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Afigma%3D%22http%3A%2F%2Fwww.figma.com%2Ffigma%2Fns%22%3E%3Ctitle%3Elogo.svg%3C%2Ftitle%3E%3Cdesc%3ECreated%20using%20Figma%200.90%3C%2Fdesc%3E%3Cg%20id%3D%22Canvas%22%20transform%3D%22translate(-1638%2C-1844)%22%20figma%3Atype%3D%22canvas%22%3E%3Cg%20id%3D%22logo%22%20style%3D%22mix-blend-mode%3Anormal%22%20figma%3Atype%3D%22group%22%3E%3Cpath%20d%3D%22m1788%201886a108.02%20108.02%200%200%200%20-104.92%2082.828%20114.07%2064.249%200%200%201%20104.92%20-39.053%20114.07%2064.249%200%200%201%20104.96%2039.261%20108.02%20108.02%200%200%200%20-104.96%20-83.037zm-104.96%20133.01a108.02%20108.02%200%200%200%20104.96%2083.037%20108.02%20108.02%200%200%200%20104.92%20-82.828%20114.07%2064.249%200%200%201%20-104.92%2039.053%20114.07%2064.249%200%200%201%20-104.96%20-39.261z%22%20style%3D%22fill%3A%23f57c00%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221699.5%22%20cy%3D%222110.8%22%20r%3D%2222.627%22%20style%3D%22fill%3A%239e9e9e%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221684.3%22%20cy%3D%221892.6%22%20r%3D%2216.617%22%20style%3D%22fill%3A%23616161%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221879.8%22%20cy%3D%221877.4%22%20r%3D%2221.213%22%20style%3D%22fill%3A%23757575%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0D%0A",
+              "x_pos": 681,
+              "y_pos": 55,
+              "description": "Notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "label": ""
+                }
+              },
+              "links": [
+                {
+                  "id": "bff2fd1c-e9a5-48f5-bdee-85f9d32c6df2",
+                  "node_id_ref": "cfc8ddfe-9d68-4315-88c3-cfb8f41bc76a",
+                  "port_id_ref": "outPort"
+                },
+                {
+                  "id": "69a16fa5-275b-4415-b880-fad418862fbd",
+                  "node_id_ref": "130d1e75-9585-480b-8c98-c86aaf051159",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "label": ""
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "884bbad3-6200-4faa-b169-0cd17cee40a4",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "filename": "../notebooks/fit_us_data.ipynb",
+            "runtime_image": "continuumio/anaconda3:2020.07",
+            "dependencies": [
+              "util.py"
+            ],
+            "include_subdirectories": false,
+            "env_vars": [],
+            "outputs": [
+              "outputs/us_counties_curves.csv",
+              "outputs/us_counties_curves_meta.json",
+              "outputs/us_counties_curves_params.csv"
+            ],
+            "invalidNodeError": null,
+            "ui_data": {
+              "label": "fit_us_data.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20opacity%3D%220.8%22%20version%3D%222.0%22%20viewBox%3D%220%200%20300%20300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Afigma%3D%22http%3A%2F%2Fwww.figma.com%2Ffigma%2Fns%22%3E%3Ctitle%3Elogo.svg%3C%2Ftitle%3E%3Cdesc%3ECreated%20using%20Figma%200.90%3C%2Fdesc%3E%3Cg%20id%3D%22Canvas%22%20transform%3D%22translate(-1638%2C-1844)%22%20figma%3Atype%3D%22canvas%22%3E%3Cg%20id%3D%22logo%22%20style%3D%22mix-blend-mode%3Anormal%22%20figma%3Atype%3D%22group%22%3E%3Cpath%20d%3D%22m1788%201886a108.02%20108.02%200%200%200%20-104.92%2082.828%20114.07%2064.249%200%200%201%20104.92%20-39.053%20114.07%2064.249%200%200%201%20104.96%2039.261%20108.02%20108.02%200%200%200%20-104.96%20-83.037zm-104.96%20133.01a108.02%20108.02%200%200%200%20104.96%2083.037%20108.02%20108.02%200%200%200%20104.92%20-82.828%20114.07%2064.249%200%200%201%20-104.92%2039.053%20114.07%2064.249%200%200%201%20-104.96%20-39.261z%22%20style%3D%22fill%3A%23f57c00%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221699.5%22%20cy%3D%222110.8%22%20r%3D%2222.627%22%20style%3D%22fill%3A%239e9e9e%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221684.3%22%20cy%3D%221892.6%22%20r%3D%2216.617%22%20style%3D%22fill%3A%23616161%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221879.8%22%20cy%3D%221877.4%22%20r%3D%2221.213%22%20style%3D%22fill%3A%23757575%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0D%0A",
+              "x_pos": 625,
+              "y_pos": 169,
+              "description": "Notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": 1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "44985f7c-d7b7-49d6-bd12-801f9e4e40fa",
+                  "node_id_ref": "130d1e75-9585-480b-8c98-c86aaf051159",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "b6a0fb39-09c8-4e0a-b253-d0492c2c0a76",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "filename": "../notebooks/analyze_fit_us_data.ipynb",
+            "runtime_image": "continuumio/anaconda3:2020.07",
+            "dependencies": [
+              "util.py"
+            ],
+            "include_subdirectories": false,
+            "env_vars": [],
+            "outputs": [],
+            "invalidNodeError": null,
+            "ui_data": {
+              "label": "analyze_fit_us_data.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20opacity%3D%220.8%22%20version%3D%222.0%22%20viewBox%3D%220%200%20300%20300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Afigma%3D%22http%3A%2F%2Fwww.figma.com%2Ffigma%2Fns%22%3E%3Ctitle%3Elogo.svg%3C%2Ftitle%3E%3Cdesc%3ECreated%20using%20Figma%200.90%3C%2Fdesc%3E%3Cg%20id%3D%22Canvas%22%20transform%3D%22translate(-1638%2C-1844)%22%20figma%3Atype%3D%22canvas%22%3E%3Cg%20id%3D%22logo%22%20style%3D%22mix-blend-mode%3Anormal%22%20figma%3Atype%3D%22group%22%3E%3Cpath%20d%3D%22m1788%201886a108.02%20108.02%200%200%200%20-104.92%2082.828%20114.07%2064.249%200%200%201%20104.92%20-39.053%20114.07%2064.249%200%200%201%20104.96%2039.261%20108.02%20108.02%200%200%200%20-104.96%20-83.037zm-104.96%20133.01a108.02%20108.02%200%200%200%20104.96%2083.037%20108.02%20108.02%200%200%200%20104.92%20-82.828%20114.07%2064.249%200%200%201%20-104.92%2039.053%20114.07%2064.249%200%200%201%20-104.96%20-39.261z%22%20style%3D%22fill%3A%23f57c00%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221699.5%22%20cy%3D%222110.8%22%20r%3D%2222.627%22%20style%3D%22fill%3A%239e9e9e%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221684.3%22%20cy%3D%221892.6%22%20r%3D%2216.617%22%20style%3D%22fill%3A%23616161%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221879.8%22%20cy%3D%221877.4%22%20r%3D%2221.213%22%20style%3D%22fill%3A%23757575%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0D%0A",
+              "x_pos": 914,
+              "y_pos": 122,
+              "description": "Notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": 1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "db3c1428-eb7a-45bd-884e-1476b91bba55",
+                  "node_id_ref": "884bbad3-6200-4faa-b169-0cd17cee40a4",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "b6301aad-775d-4c6b-bdb7-59a1e56e08a4",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "filename": "../notebooks/maps_us_data.ipynb",
+            "runtime_image": "continuumio/anaconda3:2020.07",
+            "dependencies": [
+              "util.py"
+            ],
+            "include_subdirectories": false,
+            "env_vars": [],
+            "outputs": [],
+            "ui_data": {
+              "label": "maps_us_data.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20opacity%3D%220.8%22%20version%3D%222.0%22%20viewBox%3D%220%200%20300%20300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Afigma%3D%22http%3A%2F%2Fwww.figma.com%2Ffigma%2Fns%22%3E%3Ctitle%3Elogo.svg%3C%2Ftitle%3E%3Cdesc%3ECreated%20using%20Figma%200.90%3C%2Fdesc%3E%3Cg%20id%3D%22Canvas%22%20transform%3D%22translate(-1638%2C-1844)%22%20figma%3Atype%3D%22canvas%22%3E%3Cg%20id%3D%22logo%22%20style%3D%22mix-blend-mode%3Anormal%22%20figma%3Atype%3D%22group%22%3E%3Cpath%20d%3D%22m1788%201886a108.02%20108.02%200%200%200%20-104.92%2082.828%20114.07%2064.249%200%200%201%20104.92%20-39.053%20114.07%2064.249%200%200%201%20104.96%2039.261%20108.02%20108.02%200%200%200%20-104.96%20-83.037zm-104.96%20133.01a108.02%20108.02%200%200%200%20104.96%2083.037%20108.02%20108.02%200%200%200%20104.92%20-82.828%20114.07%2064.249%200%200%201%20-104.92%2039.053%20114.07%2064.249%200%200%201%20-104.96%20-39.261z%22%20style%3D%22fill%3A%23f57c00%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221699.5%22%20cy%3D%222110.8%22%20r%3D%2222.627%22%20style%3D%22fill%3A%239e9e9e%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221684.3%22%20cy%3D%221892.6%22%20r%3D%2216.617%22%20style%3D%22fill%3A%23616161%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221879.8%22%20cy%3D%221877.4%22%20r%3D%2221.213%22%20style%3D%22fill%3A%23757575%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0D%0A",
+              "x_pos": 681,
+              "y_pos": 297,
+              "description": "Notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": 1
+                  },
+                  "label": "Input Port"
+                }
+              },
+              "links": [
+                {
+                  "id": "727fada2-8805-4f58-8cb2-f4fcd20654fd",
+                  "node_id_ref": "130d1e75-9585-480b-8c98-c86aaf051159",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "cardinality": {
+                    "min": 0,
+                    "max": -1
+                  },
+                  "label": "Output Port"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "7b28323b-cd53-4d3f-971d-fde296fa0082",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "filename": "../notebooks/tables_us_data.ipynb",
+            "runtime_image": "continuumio/anaconda3:2020.07",
+            "dependencies": [
+              "util.py"
+            ],
+            "include_subdirectories": false,
+            "env_vars": [],
+            "outputs": [],
+            "ui_data": {
+              "label": "tables_us_data.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20opacity%3D%220.8%22%20version%3D%222.0%22%20viewBox%3D%220%200%20300%20300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Afigma%3D%22http%3A%2F%2Fwww.figma.com%2Ffigma%2Fns%22%3E%3Ctitle%3Elogo.svg%3C%2Ftitle%3E%3Cdesc%3ECreated%20using%20Figma%200.90%3C%2Fdesc%3E%3Cg%20id%3D%22Canvas%22%20transform%3D%22translate(-1638%2C-1844)%22%20figma%3Atype%3D%22canvas%22%3E%3Cg%20id%3D%22logo%22%20style%3D%22mix-blend-mode%3Anormal%22%20figma%3Atype%3D%22group%22%3E%3Cpath%20d%3D%22m1788%201886a108.02%20108.02%200%200%200%20-104.92%2082.828%20114.07%2064.249%200%200%201%20104.92%20-39.053%20114.07%2064.249%200%200%201%20104.96%2039.261%20108.02%20108.02%200%200%200%20-104.96%20-83.037zm-104.96%20133.01a108.02%20108.02%200%200%200%20104.96%2083.037%20108.02%20108.02%200%200%200%20104.92%20-82.828%20114.07%2064.249%200%200%201%20-104.92%2039.053%20114.07%2064.249%200%200%201%20-104.96%20-39.261z%22%20style%3D%22fill%3A%23f57c00%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221699.5%22%20cy%3D%222110.8%22%20r%3D%2222.627%22%20style%3D%22fill%3A%239e9e9e%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221684.3%22%20cy%3D%221892.6%22%20r%3D%2216.617%22%20style%3D%22fill%3A%23616161%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221879.8%22%20cy%3D%221877.4%22%20r%3D%2221.213%22%20style%3D%22fill%3A%23757575%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0D%0A",
+              "x_pos": 681,
+              "y_pos": 416,
+              "description": "Notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "label": ""
+                }
+              },
+              "links": [
+                {
+                  "id": "7682d12c-3206-4743-b8ae-fc81adc1acf7",
+                  "node_id_ref": "130d1e75-9585-480b-8c98-c86aaf051159",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "label": ""
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "cf08f306-12d6-4d87-a929-85e0430bfacd",
+          "type": "execution_node",
+          "op": "execute-notebook-node",
+          "app_data": {
+            "filename": "../notebooks/timeseries_us_data.ipynb",
+            "runtime_image": "continuumio/anaconda3:2020.07",
+            "dependencies": [
+              "util.py"
+            ],
+            "include_subdirectories": false,
+            "env_vars": [],
+            "outputs": [],
+            "ui_data": {
+              "label": "timeseries_us_data.ipynb",
+              "image": "data:image/svg+xml;utf8,%3Csvg%20opacity%3D%220.8%22%20version%3D%222.0%22%20viewBox%3D%220%200%20300%20300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Afigma%3D%22http%3A%2F%2Fwww.figma.com%2Ffigma%2Fns%22%3E%3Ctitle%3Elogo.svg%3C%2Ftitle%3E%3Cdesc%3ECreated%20using%20Figma%200.90%3C%2Fdesc%3E%3Cg%20id%3D%22Canvas%22%20transform%3D%22translate(-1638%2C-1844)%22%20figma%3Atype%3D%22canvas%22%3E%3Cg%20id%3D%22logo%22%20style%3D%22mix-blend-mode%3Anormal%22%20figma%3Atype%3D%22group%22%3E%3Cpath%20d%3D%22m1788%201886a108.02%20108.02%200%200%200%20-104.92%2082.828%20114.07%2064.249%200%200%201%20104.92%20-39.053%20114.07%2064.249%200%200%201%20104.96%2039.261%20108.02%20108.02%200%200%200%20-104.96%20-83.037zm-104.96%20133.01a108.02%20108.02%200%200%200%20104.96%2083.037%20108.02%20108.02%200%200%200%20104.92%20-82.828%20114.07%2064.249%200%200%201%20-104.92%2039.053%20114.07%2064.249%200%200%201%20-104.96%20-39.261z%22%20style%3D%22fill%3A%23f57c00%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221699.5%22%20cy%3D%222110.8%22%20r%3D%2222.627%22%20style%3D%22fill%3A%239e9e9e%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221684.3%22%20cy%3D%221892.6%22%20r%3D%2216.617%22%20style%3D%22fill%3A%23616161%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3Ccircle%20cx%3D%221879.8%22%20cy%3D%221877.4%22%20r%3D%2221.213%22%20style%3D%22fill%3A%23757575%3Bmix-blend-mode%3Anormal%3Bpaint-order%3Afill%20markers%20stroke%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0D%0A",
+              "x_pos": 681,
+              "y_pos": 536,
+              "description": "Notebook file"
+            }
+          },
+          "inputs": [
+            {
+              "id": "inPort",
+              "app_data": {
+                "ui_data": {
+                  "label": ""
+                }
+              },
+              "links": [
+                {
+                  "id": "3c9acf7e-aaed-4bce-bc4c-095b03d3d417",
+                  "node_id_ref": "130d1e75-9585-480b-8c98-c86aaf051159",
+                  "port_id_ref": "outPort"
+                }
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "id": "outPort",
+              "app_data": {
+                "ui_data": {
+                  "label": ""
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "app_data": {
+        "ui_data": {
+          "comments": [
+            {
+              "id": "3dd01e9b-3ec7-4179-bd72-e03bd6f7b281",
+              "x_pos": 913,
+              "y_pos": 248,
+              "width": 69,
+              "height": 29,
+              "class_name": "d3-comment-rect",
+              "content": "Analyze",
+              "associated_id_refs": [
+                {
+                  "node_ref": "b6301aad-775d-4c6b-bdb7-59a1e56e08a4"
+                },
+                {
+                  "node_ref": "7b28323b-cd53-4d3f-971d-fde296fa0082"
+                },
+                {
+                  "node_ref": "cf08f306-12d6-4d87-a929-85e0430bfacd"
+                },
+                {
+                  "node_ref": "df2e46c1-c7ea-4cb6-a17c-1f6b8ceded13"
+                },
+                {
+                  "node_ref": "b6a0fb39-09c8-4e0a-b253-d0492c2c0a76"
+                }
+              ]
+            },
+            {
+              "id": "6df9e874-433d-447d-99f8-b24bfef76a77",
+              "x_pos": 55,
+              "y_pos": 186,
+              "width": 158,
+              "height": 30,
+              "class_name": "d3-comment-rect",
+              "content": "Extract and Transform",
+              "associated_id_refs": [
+                {
+                  "node_ref": "cfc8ddfe-9d68-4315-88c3-cfb8f41bc76a"
+                },
+                {
+                  "node_ref": "58f6dde7-bd2b-42f4-b681-e2176b47e0cd"
+                }
+              ]
+            },
+            {
+              "id": "f52067d1-00b8-4439-b273-4d7148227723",
+              "x_pos": 339,
+              "y_pos": 188,
+              "width": 61,
+              "height": 28,
+              "class_name": "d3-comment-rect",
+              "content": "Clean",
+              "associated_id_refs": [
+                {
+                  "node_ref": "130d1e75-9585-480b-8c98-c86aaf051159"
+                }
+              ]
+            },
+            {
+              "id": "68b1222d-08ba-474f-a5eb-198a9dd148b0",
+              "x_pos": 679,
+              "y_pos": 229,
+              "width": 62,
+              "height": 30,
+              "class_name": "d3-comment-rect",
+              "content": "Model",
+              "associated_id_refs": [
+                {
+                  "node_ref": "884bbad3-6200-4faa-b169-0cd17cee40a4"
+                }
+              ]
+            }
+          ]
+        },
+        "version": 3
+      },
+      "runtime_ref": ""
+    }
+  ],
+  "schemas": []
+}
